@@ -1,9 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { ShoppingItem } from "src/app/models/shopping-item.model";
+import { User } from "src/app/models/user.model";
 
 @Component({
     selector: "app-home",
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
 
@@ -15,8 +18,15 @@ export class HomeComponent {
     secretMessageFontSize: number;
     pStyles: object;
 
-    shoppingList: string[]
-    shoppingItem: string;
+    shoppingList: ShoppingItem[];
+    shoppingItemName: string;
+    shoppingItemQuantity: number;
+
+    userList: User[];
+    userName: string;
+    userAge: number;
+    userEmail: string;
+    userGender: string;
 
     constructor() {
         this.name = '';
@@ -30,8 +40,14 @@ export class HomeComponent {
             'font-size.px': this.secretMessageFontSize,
             'background-color': this.secretMessageBackgroundColor
         }
-        this.shoppingList = ['Milk', 'Bread', 'Eggs', 'Cheese'];
-        this.shoppingItem = '';
+        this.shoppingList = [new ShoppingItem('Milk', 1), new ShoppingItem('Bread', 2), new ShoppingItem('eggs', 3), new ShoppingItem('Cheese', 4)];
+        this.shoppingItemName = '';
+        this.shoppingItemQuantity = 10;
+        this.userList = [new User('Marga', 15, 'marga@gmail.com', 'female')];
+        this.userName = '';
+        this.userAge = 18;
+        this.userEmail = "";
+        this.userGender = "";
     }
 
     // PROPERTY BINDING = [] y relacionamos VARAIBLES DE TYPESCRIPT
@@ -66,8 +82,13 @@ export class HomeComponent {
     }
 
     addShoppingItem(): void {
-        this.shoppingList.push(this.shoppingItem);
-        this.shoppingItem = "";
+        if (this.shoppingItemQuantity <= 0) {
+            alert('La cantidad debe ser mmayor a 0');
+            return;
+        }
+        this.shoppingList.push(new ShoppingItem(this.shoppingItemName, this.shoppingItemQuantity));
+        this.shoppingItemName = "";
+        this.shoppingItemQuantity = 10;
     }
 
     isEven(i: number): boolean {
@@ -75,7 +96,7 @@ export class HomeComponent {
     }
 
     isEmpty(): boolean {
-        if (this.shoppingItem === "") {
+        if (this.shoppingItemName === "" || this.shoppingItemQuantity <= 0) {
             return this.isDisabled = true;
         }
         return this.isDisabled = false;
@@ -83,8 +104,15 @@ export class HomeComponent {
 
     addPressingEnter(event: KeyboardEvent): void {
         if (event.code === "Enter") {
-            this.shoppingList.push(this.shoppingItem);
-            this.shoppingItem = "";
+            this.addShoppingItem();
         }
+    }
+
+    addUser(): void {
+        if (this.userAge <= 0) {
+            alert('La cantidad debe ser mayor a 0');
+            return;
+        }
+        this.userList.push(new User(this.userName, this.userAge, this.userEmail, this.userGender));
     }
 }

@@ -21,3 +21,15 @@ p {
     color: green;
     font-weight: 900;
 }
+
+.young {
+    background-color: lightblue;
+}
+
+.adult {
+    background-color: orangered;
+}
+
+.old {
+    background-color: crimson;
+}
