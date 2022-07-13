@@ -43,6 +43,8 @@ export class HomeComponent {
         this.shoppingList = [new ShoppingItem('Milk', 1), new ShoppingItem('Bread', 2), new ShoppingItem('eggs', 3), new ShoppingItem('Cheese', 4)];
         this.shoppingItemName = '';
         this.shoppingItemQuantity = 10;
+
+
         this.userList = [new User('Marga', 15, 'marga@gmail.com', 'female')];
         this.userName = '';
         this.userAge = 18;
@@ -110,7 +112,7 @@ export class HomeComponent {
 
     addUser(): void {
         if (this.userAge <= 0) {
-            alert('La cantidad debe ser mayor a 0');
+            alert('La edad debe ser mayor a 0');
             return;
         }
         this.userList.push(new User(this.userName, this.userAge, this.userEmail, this.userGender));
