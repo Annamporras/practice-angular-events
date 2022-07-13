@@ -12,8 +12,7 @@
         This is a secret message</p>
 </div>
 <h1>Shopping List</h1>
-<input type="text" placeholder="Introduce a shopping item" [(ngModel)]="shoppingItem"
-    (keyup)="addPressingEnter($event)">
+<input type="text" placeholder="Introduce a shopping item" [(ngModel)]="shoppingItem" (keyup.enter)="addShoppingItem()">
 <button [disabled]="isEmpty()" (click)="addShoppingItem()">Add</button>
 <ul>
     <!-- <li [ngClass]="{'odd': i%2 !==0, 'even': i%2===0}" *ngFor="let item of shoppingList; let i = index">
