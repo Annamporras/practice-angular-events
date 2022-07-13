@@ -1,0 +1,26 @@
+<h1 (copy)="printMessage()">Hello {{ name }} {{ lastName }}</h1>
+<h2>This is the HOME page</h2>
+
+<!-- <input type="text" [placeholder]="message" [value]="name" (keyup)="updateName($event)" > -->
+<input type="text" [placeholder]="message" [(ngModel)]="name">
+<input type="text" [placeholder]="message" [(ngModel)]="lastName">
+<button [disabled]="isDisabled" (click)="sayHello()">Submit</button>
+
+<div *ngIf="isPepe()">
+    <p
+        [ngStyle]="{'color': 'lawngreen', 'font-size.px': secretMessageFontSize, 'background-color': secretMessageBackgroundColor}">
+        This is a secret message</p>
+</div>
+<h1>Shopping List</h1>
+<input type="text" placeholder="Introduce a shopping item" [(ngModel)]="shoppingItem"
+    (keyup)="addPressingEnter($event)">
+<button [disabled]="isEmpty()" (click)="addShoppingItem()">Add</button>
+<ul>
+    <!-- <li [ngClass]="{'odd': i%2 !==0, 'even': i%2===0}" *ngFor="let item of shoppingList; let i = index">
+        {{i+1}} - {{item}}
+    </li> -->
+    <li [ngClass]="{'odd': !isEven(i), 'even': isEven(i)}" *ngFor="let item of shoppingList; let i = index">
+        {{i+1}} - {{item}}
+    </li>
+
+</ul>
